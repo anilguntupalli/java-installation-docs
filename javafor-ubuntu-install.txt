@@ -1,0 +1,85 @@
+# this document for java install in ubuntu and debian flavaour OS
+which java      --> to check java installd or not
+if the command gives output then java installed otherwise java is not installed
+which javac     --> to check jabac installed or not
+
+Java are two types 1. openjdk 2. oracle java
+
+java versions are called as java 6, java7 ,java8 ,java9 like that.
+
+latest java8 is mostly all developers are using
+sudo apt-get install openjdk-6-jdk -y      --> to install java6 of openjdk
+sudo apt-get install openjdk-7-jdk -y      --> to  install java7 of openjdk 
+sudo apt-get install openjdk-8-jdk -y      --> install java8 of openjdk
+
+Orcalce java install command are 
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update -y
+sudo apt install oracle-java8-installer -y    --> then oracle java is installed
+
+Now java is installed.
+Now we have to identify path of java installed, here "path" means "directory of where java installation files are downlaoded"
+
+for that type as which java  -->then it will give output as  /usr/bin/java/bin/java
+Note: /bin/java is short path of java installed directory.
+      To set Envirornmental variable we require full path.
+To identify full path then command is "   readlink -f /usr/bin/java
+note: It will give output like /usr/lib/jvm/openjdk some thing  --> this oupt may change for installation to installation 
+   
+
+Now setting environmental variable for all users. we can set env for one user also.
+Here I am discussing setting environmental variable for all users.
+
+to set envormental are two types.the below contentt is smae for bpoth redhat,centos, ubuntud and debian any veriosn of operating systems.
+/etc/profile  --> /profile it is a file
+/etc/prfoile.d   --> /profile.d is a directory
+
+Note: use any one of the method only.
+
+First I am discusing here /etc/profile
+
+/profile is a file 
+
+
+use any one , I am telling here /profile only
+
+vi /etc/profile
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/        (note: /usr/lib/jvm/java-8-openjdk-amd64/ --> is readlink -f bin/java output)
+export PATH=$PATH:$HOME/bin:$JAVA_HOME/bin
+
+save and exit
+
+Note: /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.201-2.6.16.1.el7_6.x86_64/   ---> this is readlink -f /bin/java oupput.
+
+source /etc/profile  --> to recongnise setting env
+
+note : Do not use like  "  sudo source /etc/profile
+
+Finally to check java is installed or not then Type as "    echo $JAVA_HOME 
+it will give the output
+
+finally we innstalled java and set environmenatl varibale to all users.
+
+
+Second method  for seting envorinmentl varible
+ go to /etc/profile.d
+
+we have create file java-env.sh and in that file content is like
+export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.201-2.6.16.1.el7_6.x86_64/        
+export PATH=$PATH:$HOME/bin:$JAVA_HOME/bin
+
+Note: java-env.sh   : java-env is not necessary , it can be any name but file extenstion must be any .sh
+
+Note: the files in /etc/profile.d are readable to all user in that linux system. 
+
+finally source /etc/profile
+
+to check Java env is setted or not command is echo $JAVA_HOME
+
+
+
+
+
+
+
+
